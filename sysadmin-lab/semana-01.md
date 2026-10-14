@@ -2,7 +2,7 @@
 
 **Objetivo:** operar Debian por SSH, entender permisos y recuperar un servicio con `systemd` y `journalctl`.
 
-**VM:** `srv-core` — Debian 12, IP sugerida `10.10.10.10/24`, hostname `srv-core.lab.local`.
+**VM:** `srv-core` — Debian 12 en **Proxmox**, IP `10.10.10.10/24`, hostname `srv-core.lab.local`. Guía de red y snapshots: [plataforma-proxmox-oracle.md](./plataforma-proxmox-oracle.md).
 
 **Docs de la semana (ES/EN):**
 
@@ -20,14 +20,14 @@
 |-----|------|--------|
 | 0–15 | FHS: `/etc`, `/var`, `/home`, `/tmp` | Dibujar en una hoja qué va en cada ruta |
 | 15–30 | `root` vs usuario sin privilegios, `sudo` | Leer `man sudo`, notar `/etc/sudoers` y grupo `sudo` en Debian |
-| 30–45 | Instalación Debian: solo SSH server, sin entorno gráfico | Repasar opciones: particionado simple, usuario inicial ≠ root |
+| 30–45 | Proxmox: bridge `vmbr0`, VirtIO disk/net, qcow2, VMID | Leer [Proxmox Wiki — QEMU/KVM](https://pve.proxmox.com/wiki/QEMU/KVM_Virtual_Machines) |
 | 45–60 | SSH: clave pública vs contraseña | Generar clave en tu PC: `ssh-keygen -t ed25519` |
 
 ### Bloque práctica (~60 min)
 
 | Min | Tarea |
 |-----|--------|
-| 0–20 | Crear VM, instalar Debian 12, IP estática o DHCP documentada |
+| 0–20 | En Proxmox: crear VM `srv-core`, instalar Debian 12 (solo SSH), instalar `qemu-guest-agent`, snapshot `clean-install` |
 | 20–40 | Desde tu PC: `ssh deploy@10.10.10.10` (o el usuario que creaste); copiar clave con `ssh-copy-id` |
 | 40–50 | `sudo whoami` → `root`; editar `/etc/hostname` si hace falta; `sudo hostnamectl set-hostname srv-core` |
 | 50–60 | Anotar en tu bitácora: IP, usuario, cómo entrás |
@@ -200,7 +200,7 @@ Resolver T-003; no borrar `/var/log` entero — solo lo necesario.
 | 0–30 | Cheat sheet propio: 15 comandos de la semana |
 | 30–60 | **Simulacro:** ticket aleatorio T-001 o T-003 sin mirar soluciones |
 | 60–90 | **Simulacro:** T-002 (servicio failed) |
-| 90–120 | Actualizar bitácora; snapshot de la VM |
+| 90–120 | Actualizar bitácora; snapshot Proxmox `pre-week-2` |
 
 ---
 

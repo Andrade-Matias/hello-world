@@ -2,7 +2,9 @@
 
 **Objetivo:** diagnosticar conectividad por capas, endurecer SSH y abrir/cerrar puertos sin quedarte afuera.
 
-**VM:** `srv-core` (`10.10.10.10`). Opcional segunda VM `srv-client` (`10.10.10.11`) para probar desde “otra máquina”.
+**VM:** `srv-core` (`10.10.10.10`) en Proxmox. Opcional `srv-client` (Debian, `10.10.10.11`) o tu PC con SQL Developer / `curl` para probar desde fuera de la VM.
+
+**Nota:** en semana 3 vas a necesitar el puerto **1521** hacia `srv-oracle` (`10.10.10.30`); dejá documentado cómo abrís puertos en la VM (ufw) y que Proxmox no filtre entre VMs en el mismo bridge.
 
 **Docs:**
 
